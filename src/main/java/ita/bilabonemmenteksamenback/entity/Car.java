@@ -13,7 +13,7 @@ public class Car {
     private String make;
     private String model;
     private String fuelType;
-    private String status; // reserved, free, in repair
+    private String status; // reserved, Available, Maintenance
 
     public Car(String make, String model, String fuelType, String status) {
         this.make = make;
