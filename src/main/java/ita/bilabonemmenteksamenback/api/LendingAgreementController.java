@@ -8,39 +8,42 @@ import ita.bilabonemmenteksamenback.repository.CarRepository;
 import ita.bilabonemmenteksamenback.repository.CustomerRepository;
 import ita.bilabonemmenteksamenback.repository.LendingAgreementRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
 public class LendingAgreementController {
 
-    private LendingAgreementRepository lendingAgreementRepository;
-    private CarRepository carRepository;
-    private CustomerRepository customerRepository;
+    private final LendingAgreementRepository lendingAgreementRepository;
+    private final CarRepository carRepository;
+    private final CustomerRepository customerRepository;
 
-    public LendingAgreementController(LendingAgreementRepository lendingAgreementRepository, CarRepository carRepository, CustomerRepository customerRepository) {
+    public LendingAgreementController(
+            LendingAgreementRepository lendingAgreementRepository,
+            CarRepository carRepository,
+            CustomerRepository customerRepository) {
         this.lendingAgreementRepository = lendingAgreementRepository;
         this.carRepository = carRepository;
         this.customerRepository = customerRepository;
     }
-
-    // gets all lending agreements
+//lendingAgreementService.getAllLendingAgreements();
+    //gets all lending agreements
     @GetMapping("/api/lendingAgreements")
-    public List<LendingAgreement> getAllLendingAgreements(){return lendingAgreementRepository.findAll();}
+    public ResponseEntity<List<LendingAgreement>> getAllLendingAgreements() {
+        List<LendingAgreement> lendingAgreements = lendingAgreementRepository.findAll();
+        return ResponseEntity.ok(lendingAgreements);
+    }
 
-
-    // creates new lending agreement if the body of the request is correct
-    //takes data from requestbody and sets the associated car and customer to the lendingagreement
+    //creates lendingagreement if requestbody is correct, takes id of car and customer to get full class for constructor
     @PostMapping("/api/lendingAgreement/createLendingAgreement")
     public ResponseEntity<String> createLendingAgreement(@RequestBody LendingAgreement lendingAgreement) {
         try {
-            Car car = carRepository.findById(lendingAgreement.getCar().getCarId()).orElseThrow(() -> new EntityNotFoundException("Car not found"));
+            Car car = carRepository.findById(lendingAgreement.getCar().getCarId())
+                    .orElseThrow(() -> new EntityNotFoundException("Car not found"));
 
             Customer customer = customerRepository.findById(lendingAgreement.getCustomer().getCustomerId())
                     .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
@@ -53,9 +56,7 @@ public class LendingAgreementController {
             return ResponseEntity.ok("Lending agreement created successfully! ID: " + savedAgreement.getLendingAgreementId());
         } catch (Exception e) {
             e.printStackTrace();
-
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create lending agreement: " + e.getMessage());
         }
     }
-
 }

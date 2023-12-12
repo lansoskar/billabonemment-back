@@ -1,10 +1,12 @@
 package ita.bilabonemmenteksamenback.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "lending_agreements")
 public class LendingAgreement {
     @Id
@@ -12,11 +14,11 @@ public class LendingAgreement {
     private Long lendingAgreementId;
 
     //join customer and car id's to the lending agreement and a start date and end date
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
     private Car car;
 
