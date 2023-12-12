@@ -30,6 +30,17 @@ public class Car {
         return carId;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", fuelType='" + fuelType + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
     public void setCarId(long carId) {
         this.carId = carId;
     }

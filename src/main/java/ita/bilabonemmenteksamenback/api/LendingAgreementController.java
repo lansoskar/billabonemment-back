@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -30,7 +31,8 @@ public class LendingAgreementController {
         this.carRepository = carRepository;
         this.customerRepository = customerRepository;
     }
-//lendingAgreementService.getAllLendingAgreements();
+
+    //lendingAgreementService.getAllLendingAgreements();
     //gets all lending agreements
     @GetMapping("/api/lendingAgreements")
     public ResponseEntity<List<LendingAgreement>> getAllLendingAgreements() {
@@ -38,8 +40,19 @@ public class LendingAgreementController {
         return ResponseEntity.ok(lendingAgreements);
     }
 
+    //get lendingagreement by id
+    @GetMapping("/api/lendingAgreements/getLendingAgreement/{lendingAgreementId}")
+    public ResponseEntity<LendingAgreement> getLendingAgreementById(@PathVariable Long lendingAgreementId){
+        Optional<LendingAgreement> lendingAgreement = lendingAgreementRepository.findById(lendingAgreementId);
+        if (lendingAgreement.isPresent()) {
+            return ResponseEntity.ok(lendingAgreement.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     //creates lendingagreement if requestbody is correct, takes id of car and customer to get full class for constructor
-    @PostMapping("/api/lendingAgreement/createLendingAgreement")
+    @PostMapping("/api/lendingAgreements/createLendingAgreement")
     public ResponseEntity<String> createLendingAgreement(@RequestBody LendingAgreement lendingAgreement) {
         try {
             Car car = carRepository.findById(lendingAgreement.getCar().getCarId())

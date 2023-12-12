@@ -24,12 +24,14 @@ public class LendingAgreement {
 
     private LocalDate startDate;
     private LocalDate endDate;
+    private String pickupLocation;
 
-    public LendingAgreement( Customer customer, Car car, LocalDate startDate, LocalDate endDate) {
+    public LendingAgreement( Customer customer, Car car, LocalDate startDate, LocalDate endDate, String pickupLocation) {
         this.customer = customer;
         this.car = car;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.pickupLocation = pickupLocation;
     }
     public LendingAgreement() {}
 
@@ -43,6 +45,7 @@ public class LendingAgreement {
                 ", endDate=" + endDate +
                 '}';
     }
+
 
     public Long getLendingAgreementId() {
         return lendingAgreementId;
@@ -82,5 +85,13 @@ public class LendingAgreement {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public String getPickupLocation() {
+        return pickupLocation;
+    }
+
+    public void setPickupLocation(String pickupLocation) {
+        this.pickupLocation = pickupLocation;
     }
 }

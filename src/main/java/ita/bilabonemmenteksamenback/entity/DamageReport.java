@@ -1,5 +1,6 @@
 package ita.bilabonemmenteksamenback.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -13,23 +14,38 @@ public class DamageReport {
 
     private String typeOfDamage;
     private BigDecimal repairCost;
+    @JsonProperty("repairComplete")
+    private boolean repairComplete;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "carId")
     private Car car;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "lendingAgreementId")
     private LendingAgreement lendingAgreement;
 
-    public DamageReport( String typeOfDamage, BigDecimal repairCost, Car car, LendingAgreement lendingAgreement) {
+    public DamageReport( String typeOfDamage, BigDecimal repairCost, Car car, LendingAgreement lendingAgreement, boolean repairComplete) {
         this.typeOfDamage = typeOfDamage;
         this.repairCost = repairCost;
         this.car = car;
         this.lendingAgreement = lendingAgreement;
+        this.repairComplete = repairComplete;
     }
     public DamageReport() {}
+
+    @Override
+    public String toString() {
+        return "DamageReport{" +
+                "damageReportId=" + damageReportId +
+                ", typeOfDamage='" + typeOfDamage + '\'' +
+                ", repairCost=" + repairCost +
+                ", repairComplete=" + repairComplete +
+                ", car=" + car +
+                ", lendingAgreement=" + lendingAgreement +
+                '}';
+    }
 
     public Long getDamageReportId() {
         return damageReportId;
@@ -69,5 +85,13 @@ public class DamageReport {
 
     public void setLendingAgreement(LendingAgreement lendingAgreement) {
         this.lendingAgreement = lendingAgreement;
+    }
+
+    public boolean isRepairComplete() {
+        return repairComplete;
+    }
+
+    public void setRepairComplete(boolean repairComplete) {
+        this.repairComplete = repairComplete;
     }
 }
