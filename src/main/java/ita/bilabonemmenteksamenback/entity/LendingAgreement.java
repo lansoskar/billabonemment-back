@@ -13,11 +13,11 @@ public class LendingAgreement {
 
     //join customer and car id's to the lending agreement and a start date and end date
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerId")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "carId")
+    @JoinColumn(name = "car_id")
     private Car car;
 
     private LocalDate startDate;
@@ -30,6 +30,17 @@ public class LendingAgreement {
         this.endDate = endDate;
     }
     public LendingAgreement() {}
+
+    @Override
+    public String toString() {
+        return "LendingAgreement{" +
+                "lendingAgreementId=" + lendingAgreementId +
+                ", customer=" + (customer != null ? customer.getCustomerId() : "null") +
+                ", car=" + (car != null ? car.getCarId() : "null") +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 
     public Long getLendingAgreementId() {
         return lendingAgreementId;

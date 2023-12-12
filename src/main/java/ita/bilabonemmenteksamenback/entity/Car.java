@@ -15,7 +15,8 @@ public class Car {
     private String fuelType;
     private String status; // reserved, Available, Maintenance
 
-    public Car(String make, String model, String fuelType, String status) {
+    public Car(Long carId, String make, String model, String fuelType, String status) {
+        this.carId = carId;
         this.make = make;
         this.model = model;
         this.fuelType = fuelType;

@@ -20,7 +20,8 @@ public class Customer {
 
 
     // constructors - JPA needs an empty one to initialize with
-    public Customer( String name, String email, String contactNumber, String addressStreet, String addressCity, Boolean creditApproved) {
+    public Customer(Long customerId, String name, String email, String contactNumber, String addressStreet, String addressCity, Boolean creditApproved) {
+        this.customerId = customerId;
         this.name = name;
         this.email = email;
         this.contactNumber = contactNumber;
@@ -33,11 +34,12 @@ public class Customer {
     public Customer() {}
 
     //getters and setters
-    public long getId() {
+
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setId(long id) {
+    public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 
@@ -73,12 +75,12 @@ public class Customer {
         this.addressStreet = addressStreet;
     }
 
-    public String getAddressCity() {
+    public String getAddressPost() {
         return addressPost;
     }
 
-    public void setAddressCity(String addressCity) {
-        this.addressPost = addressCity;
+    public void setAddressPost(String addressPost) {
+        this.addressPost = addressPost;
     }
 
     public Boolean getCreditApproved() {

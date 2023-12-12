@@ -45,6 +45,8 @@ public class CarController {
         return carRepository.save(car);
     }
 
+
+
     //updates car status after creating lending agreement
     @PutMapping("/api/cars/updateCarStatus/{carId}")
     public ResponseEntity<String> updateCarStatus(@PathVariable Long carId) {
