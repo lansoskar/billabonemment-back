@@ -2,6 +2,8 @@ package ita.bilabonemmenteksamenback.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "cars")
 public class Car {
@@ -14,13 +16,15 @@ public class Car {
     private String model;
     private String fuelType;
     private String status; // reserved, Available, Maintenance
+    private BigDecimal carValue;
 
-    public Car(Long carId, String make, String model, String fuelType, String status) {
+    public Car(long carId, String make, String model, String fuelType, String status, BigDecimal carValue) {
         this.carId = carId;
         this.make = make;
         this.model = model;
         this.fuelType = fuelType;
         this.status = status;
+        this.carValue = carValue;
     }
 
     public Car() {}
@@ -75,5 +79,13 @@ public class Car {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public BigDecimal getCarValue() {
+        return carValue;
+    }
+
+    public void setCarValue(BigDecimal carValue) {
+        this.carValue = carValue;
     }
 }
