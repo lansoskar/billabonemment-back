@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ITA</groupId>
-    <artifactId>bilabonemment-eksamen-back</artifactId>
+    <artifactId>bilabonnement-eksamen-back</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>bilabonemment-eksamen-back</name>
     <description>bilabonemment-eksamen-back</description>
