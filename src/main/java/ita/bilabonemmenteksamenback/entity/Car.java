@@ -15,7 +15,7 @@ public class Car {
     private String make;
     private String model;
     private String fuelType;
-    private String status; // reserved, Available, Maintenance
+    private String status; // Reserved, Available, Maintenance
     private BigDecimal carValue;
 
     public Car(long carId, String make, String model, String fuelType, String status, BigDecimal carValue) {
