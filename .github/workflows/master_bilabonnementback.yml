@@ -54,4 +54,4 @@ jobs:
           app-name: 'BilAbonnementBack'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8E4A1174B1084172836D97A75E3EF45A }}
-          package: '*.jar'
+          package: ${{ github.workspace }}/target/*.jar
