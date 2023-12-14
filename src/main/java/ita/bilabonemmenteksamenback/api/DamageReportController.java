@@ -30,6 +30,7 @@ public class DamageReportController {
     }
 
     //get all damage reports
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @GetMapping("/api/damageReports")
     public ResponseEntity<List<DamageReport>> getAllDamageReports(){
         List<DamageReport> damageReports = damageRepository.findAll();
@@ -39,6 +40,7 @@ public class DamageReportController {
 
     //creates Damage report if requestbody is correct, takes id of car and lendingagreement and gets full objects-
     //-to put in constructor, also sets associated car status to maintenance
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @PostMapping("/api/damageReport/createDamageReport")
     public ResponseEntity<String> createDamageReport(@RequestBody DamageReport damageReport){
         try {
@@ -64,6 +66,7 @@ public class DamageReportController {
         }
 
         //updates status of repair complete
+        @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
         @PutMapping("/api/damageReports/updateRepairComplete/{reportId}")
         public ResponseEntity<String> updateRepairComplete(@PathVariable Long reportId, @RequestBody Map<String, Boolean> request) {
             try {

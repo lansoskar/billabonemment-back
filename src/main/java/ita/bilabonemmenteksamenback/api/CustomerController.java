@@ -18,17 +18,19 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
 
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     //gets all customers
     @GetMapping("/api/customers")
     public List<Customer> getAllCustomers(){return customerRepository.findAll(); }
 
-
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     //create customer if requestbody is correct
     @PostMapping("/api/addCustomer")
     public Customer createCustomer(@RequestBody Customer customer){
     return customerRepository.save(customer);
     }
 
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     //gets customer by id
     @GetMapping("/api/customers/getCustomer/{customerId}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable Long customerId) {
@@ -40,8 +42,8 @@ public class CustomerController {
         }
     }
 
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     //checks customer credit
-    // TOOK 2 HOURS BECAUSE OF SPELLING MISTAKE YESSIR👍👍👍👍👍👍👍👍👍
     @GetMapping("/api/customers/checkCredit/{customerId}")
     public ResponseEntity<Boolean> checkCreditApproval(@PathVariable Long customerId) {
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);

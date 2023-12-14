@@ -24,6 +24,7 @@ public class CarController {
         this.carRepository = carRepository;
     }
 
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     //gets all cars
     @GetMapping("/api/cars")
     public List<Car> getAllCars() {
@@ -31,6 +32,7 @@ public class CarController {
     }
 
     //gets car by id
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @GetMapping("/api/cars/getCar/{carId}")
     public ResponseEntity<Car> getCarById(@PathVariable Long carId) {
         Optional<Car> car = carRepository.findById(carId);
@@ -42,6 +44,7 @@ public class CarController {
     }
 
     //creates new car if requestbody is correct
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @PostMapping("/api/cars/addCar")
     public Car createCar(@RequestBody Car car){
         return carRepository.save(car);
@@ -49,6 +52,7 @@ public class CarController {
 
 
     //updates car status based on maintenance repair is completed
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @PutMapping("/api/cars/setCarAvailable/{carId}")
     public ResponseEntity<String> setCarAvailable(@PathVariable Long carId, @RequestBody Map<String, Boolean> request) {
         try {
@@ -76,6 +80,7 @@ public class CarController {
 
 
     //updates car status after creating lending agreement
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @PutMapping("/api/cars/updateCarStatus/{carId}")
     public ResponseEntity<String> updateCarStatus(@PathVariable Long carId) {
         Optional<Car> optionalCar = carRepository.findById(carId);

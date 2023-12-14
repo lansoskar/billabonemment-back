@@ -34,6 +34,7 @@ public class LendingAgreementController {
 
     //lendingAgreementService.getAllLendingAgreements();
     //gets all lending agreements
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @GetMapping("/api/lendingAgreements")
     public ResponseEntity<List<LendingAgreement>> getAllLendingAgreements() {
         List<LendingAgreement> lendingAgreements = lendingAgreementRepository.findAll();
@@ -41,6 +42,7 @@ public class LendingAgreementController {
     }
 
     //get lendingagreement by id
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @GetMapping("/api/lendingAgreements/getLendingAgreement/{lendingAgreementId}")
     public ResponseEntity<LendingAgreement> getLendingAgreementById(@PathVariable Long lendingAgreementId){
         Optional<LendingAgreement> lendingAgreement = lendingAgreementRepository.findById(lendingAgreementId);
@@ -52,6 +54,7 @@ public class LendingAgreementController {
     }
 
     //creates lendingagreement if requestbody is correct, takes id of car and customer to get full class for constructor
+    @CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
     @PostMapping("/api/lendingAgreements/createLendingAgreement")
     public ResponseEntity<String> createLendingAgreement(@RequestBody LendingAgreement lendingAgreement) {
         try {
