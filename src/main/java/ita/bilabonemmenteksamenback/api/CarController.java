@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", exposedHeaders = "Access-Control-Allow-Origin")
 public class CarController {
 
     private CarRepository carRepository;
