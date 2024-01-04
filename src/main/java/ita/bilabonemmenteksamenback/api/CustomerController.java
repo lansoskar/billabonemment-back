@@ -41,7 +41,7 @@ public class CustomerController {
     }
 
     //checks customer credit
-    // TOOK 2 HOURS BECAUSE OF SPELLING MISTAKE YESSIR👍👍👍👍👍👍👍👍👍
+
     @GetMapping("/api/customers/checkCredit/{customerId}")
     public ResponseEntity<Boolean> checkCreditApproval(@PathVariable Long customerId) {
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
